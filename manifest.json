@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "LeetCode AI Code Quality Analysis",
+  "version": "1.0",
+  "description": "AI-powered code analysis and suggestions for LeetCode users.",
+  "permissions": ["scripting", "activeTab", "storage"],
+  "host_permissions": [
+    "https://leetcode.com/*",
+    "https://generativelanguage.googleapis.com/"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+ "content_scripts": [
+  {
+    "matches": ["*://leetcode.com/*"],
+    "js": ["marked.min.js", "content.js"]
+  }
+]
+,
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src https://generativelanguage.googleapis.com/"
+  }
+}
